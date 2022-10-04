@@ -1,10 +1,13 @@
 package com.gulimall.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -57,4 +60,14 @@ public class CategoryEntity implements Serializable {
 	 */
 	private Integer productCount;
 
+	/**
+	 * 树形结构的子类，在数据库中不存在
+	 */
+	@TableField(exist = false)
+	private List<CategoryEntity> children;
+
+	public Integer getSort() {
+		if (sort == null) return 0;
+		return sort;
+	}
 }
